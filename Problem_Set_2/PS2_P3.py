@@ -26,14 +26,14 @@ N = np.ones([n,n]) + np.eye(n)
 w,v = np.linalg.eigh(N)# w = Lambda, v = v
 w = np.real(w); v=np.real(v)
 
-# As described by the blackboard work (see photo)
+# As worked out during office hours
 """
 Chi^2 = (d-m)^T N^-1 (d-m)
       =   n^T N^-1 n                -> n is noise for correct model
       = n^T (v L v^T)^-1 n          -> decompose N into eigenvectors/values
-                                       v is vectors, L is matrix of eigenvalues
+                                       v is vectors, L is diagonal matrix of eigenvalues
       = n^T (v^T)^-1 L^-1 v^-1 n
-      = n^T v L^-1 v^T n            -> (v^T)^-1 = v, and v^T = v^-1
+      = n^T v L^-1 v^T n            -> Note: (v^T)^-1 = v, and v^T = v^-1
       = b^T L^-1 b                  -> b = v^T n  (b = n-squiggle in class)
       
       Since L is diagonal, b gives us a form of "data" in this chi^2 formulation
@@ -51,8 +51,6 @@ plt.savefig("PS2_P3_single_realization.png")
 
 
 
-
-
 # do many realizations of generated data
 # test to see if <dd^T> looks like N 
 
@@ -65,6 +63,7 @@ for i in range(niters):
     ddT = ddT + np.outer(dat_i,dat_i)
 
 ddTavg = ddT/niters
+# sanity check
 print N[:4,:4]
 print ddTavg[:4,:4]
     
@@ -73,7 +72,6 @@ plt.figure(num=32)
 plt.clf()
 plt.title("<ddT>")
 plt.imshow(ddTavg,interpolation='nearest',vmin=0,vmax=3)
-#   I have capped the colour-bar at 5 to better see what's happening (max point is ~13)
 plt.colorbar()
 plt.savefig("PS2_P3_<ddT>.png")
 
@@ -86,23 +84,9 @@ plt.savefig("PS2_P3_N_matrix.png")
 
 """
 The <ddT> and N matrices look very similar.  With 10000 iterations in the average
-there is a small scatter around the N matrix (see figures)
+there is a small scatter around the N matrix values (see figures)
 
 """
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
