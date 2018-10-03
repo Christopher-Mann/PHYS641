@@ -30,7 +30,7 @@ noise = 0.5
 y = y_true #+ noise*np.random.randn(numpoints)
 
 
-#'''
+
 plt.figure(num=21)
 plt.clf()
 
@@ -46,13 +46,10 @@ maxord = 28
 for ord in range(minord,maxord):
     
     A = np.zeros([numpoints,ord+1])
-#    print "set order 0 (index 0)"
     A[:,0] = 1.0
-#    print "set order 1 (index 1)"
     A[:,1] = x
     
     for i in np.arange(1,ord):
-#        print "calc order %i (index %i)"%(i,i)
         A[:,i+1] = 2*x*A[:,i] - A[:,i-1]
 
     N = np.identity(len(x))
@@ -93,7 +90,7 @@ plt.text(-0.8,3,"Plotted order %i to %i"%(minord,maxord))
 
 
 
-#'''
+
 
 
 #'''
@@ -127,7 +124,7 @@ mQR = np.dot(RinvQT,y)
 predQR = np.dot(A,mQR)
 rmsQR = np.std(predQR-y_true)
 
-rms7 =  np.std(predQR-y_true)
+rms7 =  np.std(predQR-y_true)       # for a 7-term fit
 max7 = np.max(np.abs(predQR-y_true))
 
 
@@ -175,58 +172,43 @@ predQR_trunc = np.dot(A_trunc,mQR_trunc)
 
 
 
-errRMS7 = rms7
+errRMS7 = rms7  # from 7-term fit
 errMAX7 = max7
 
-errRMS_trunc = np.std(predQR_trunc-y_true)
+errRMS_trunc = np.std(predQR_trunc-y_true)  # from order 200 fit, truncated to 7 terms
 errMAX_trunc = np.max(np.abs(predQR_trunc - y_true)) 
 errMAX_trunc_predicted = np.sum(np.abs(mQR[7:]))
 
 print "Errors:"
-print "RMS error %i-term fit \n    %.4e"%(ord,errRMS7)
-print "Max error %i-term fit \n    %.4e"%(ord,errMAX7)
+print "RMS error 7-term fit \n    %.4e"%(errRMS7)
+print "Max error 7-term fit \n    %.4e"%(errMAX7)
     
-print "RMS error using 1st 7 terms \n    %.4e"%(errRMS_trunc)
-print "Max error using 1st 7 terms \n    %.4e"%(errMAX_trunc)# ???
+print "RMS error using 1st 7 terms of order 200 fit \n    %.4e"%(errRMS_trunc)
+print "Max error using 1st 7 terms of order 200 fit \n    %.4e"%(errMAX_trunc)# ???
 print "Max error expected summing coefficients 8 to %i \n    %.4e"%(ord,errMAX_trunc_predicted)
     
 print "RMS error increases by factor: %.3f"%(errRMS7/errRMS_trunc)**-1
 print "Max error decreases by factor: %.3f"%(errMAX7/errMAX_trunc)**-1
 
-
-
 """ 
-
 This outputs:
 
 Errors:
-RMS error 200-term fit 
+RMS error 7-term fit 
     1.9853e-06
-Max error 200-term fit 
+Max error 7-term fit 
     7.9848e-06
-RMS error using 1st 7 terms 
+RMS error using 1st 7 terms of order 200 fit 
     2.2588e-06
-Max error using 1st 7 terms 
+Max error using 1st 7 terms of order 200 fit 
     3.4094e-06
 Max error expected summing coefficients 8 to 200 
     3.4148e-06
 RMS error increases by factor: 1.138
 Max error decreases by factor: 0.427
 
-
-
-
-
-
 """
 
 
-
-
-    
-
-    
-
-    
 
     
