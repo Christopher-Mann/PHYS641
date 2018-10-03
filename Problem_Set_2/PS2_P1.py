@@ -13,16 +13,7 @@ import math
 import matplotlib.pyplot as plt
 from math import pi,e
 
-
-
-
-
-
-
-
-
-
-
+# Setting up the data
 numpoints = 1000
 x = np.linspace(-1,1,numpoints)
 y_true = 4*x**3 - 1*x**2 - 2*x + 2
@@ -30,7 +21,7 @@ noise = 0.5
 y = y_true + noise*np.random.randn(numpoints)
 
 
-
+# Setting up some figures to add to
 plt.figure(num=1)
 plt.clf()
 plt.title("Poly-fits: Red=QR, Blue=Classic")
@@ -78,9 +69,9 @@ for ord in range(0,50):
        -> substitute A = QR
     R^T Q^T N^-1 Q R m = R^T Q^T N^-1 d
        -> Know that R and R^T are invertible 
-       -> so multiply on the left by (R^T)^-1 left with:
+       -> so multiply on the left by (R^T)^-1, left with:
     Q^T N^-1 Q R m = Q^T N^-1 d
-       -> RESULT:
+       -> RESULT (no squared R term):
     m = (Q^T N^-1 Q R)^-1 Q^T N^-1 d
        -> if N = I, simplifies to 
     m = R^-1 Q^T d
@@ -90,7 +81,6 @@ for ord in range(0,50):
     mQR = np.dot(RinvQT,y)
 
     predQR = np.dot(A,mQR)
-    
     rmsQR = np.std(predQR-y_true)
 
 
@@ -115,6 +105,7 @@ for ord in range(0,50):
 
     iter +=1
 
+    # adding this order's fit to the plot
     plt.figure(num=1)
     plt.plot(x,predQR,'r--',label="Order %i, rms=%.4f"%(ord,rmsQR))
     plt.plot(x,pred_classic,'b-',label="Order %i, rms=%.4f"%(ord,rms_classic))
@@ -128,14 +119,6 @@ for ord in range(0,50):
     plt.plot(x,predQR-y_true)
 
 plt.savefig("PS2_P1_QR_and_classic_residuals.png")
-
-
-
-
-
-
-
-
 
 
 
