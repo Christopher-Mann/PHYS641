@@ -4,6 +4,31 @@ import simple_read_ligo as rl
 from matplotlib import pyplot as plt
 
 
+
+""" SET THESE VARIABLES
+ -- do you want to make plots in a folder called 'figures'? (probably not)
+ -- where is your LIGO data located?
+ -- are we looking at Livingston or Hanford?
+"""
+
+# Run with which="H" first, then with which="L" (sorry, order matters here)
+
+makeplots = False
+data_location = "./LIGO_tutorial_data/"
+which = "H"  
+
+
+
+
+
+
+
+
+
+
+
+
+
 # we need this "shifted" vector because the discrete fourier transform
 # only looks at -n/2 to n/2 and assumes periodicity
 def make_ft_vec(n):
@@ -34,24 +59,12 @@ def gaussian_smoothing(dat,FWHM):
     
 
 
-data_location = "./LIGO_tutorial_data/"
 
 # Event labels, data files, and template files all in the same order
 eventname        = [           'GW170104',                          'GW150914',                          'LVT151012',                        'GW151266']
 H_datafiles      = ['H-H1_LOSC_4_V1-1167559920-32.hdf5','H-H1_LOSC_4_V2-1126259446-32.hdf5','H-H1_LOSC_4_V2-1128678884-32.hdf5','H-H1_LOSC_4_V2-1135136334-32.hdf5']
 L_datafiles      = ['L-L1_LOSC_4_V1-1167559920-32.hdf5','L-L1_LOSC_4_V2-1126259446-32.hdf5','L-L1_LOSC_4_V2-1128678884-32.hdf5','L-L1_LOSC_4_V2-1135136334-32.hdf5']
 template_datafiles = [  'GW170104_4_template.hdf5',         'GW150914_4_template.hdf5',           'LVT151012_4_template.hdf5',     'GW151226_4_template.hdf5']
-
-
-
-
-""" SET THESE VARIABLES
- -- are we looking at Livingston or Hanford?
- -- do you want to make plots in a folder called 'figures'? (probably not)
-"""
-# Run with which="H" first, then with which="L"
-which = "L"  
-makeplots = False
 
 
 
@@ -337,6 +350,8 @@ if Hanford==False:
     for i in range(len(eventname)):
         print "\nEvent: %s"%(eventname[i])
         print "SNR Hanford:    %7.3f\nSNR Livingston: %7.3f\nSNR combined:   %7.3f"%(SNR_H[i],SNR_L[i],SNR_total[i])
+
+
 
 """
 When you run Handford first, then Livingston
