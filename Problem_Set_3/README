@@ -1,0 +1,15 @@
+I have submitted my assignment as (hopefully) clearly commented python code.
+
+I don't think you really need to run the code.  At the bottom of the script I have
+included a commented version of the printout.  The figures and code comments 
+should tell you the rest of the story.
+
+If you DO want to run it, you need to set the 3 variables at the top:
+    1) You probably want to keep makeplots=False since I've already provided plots for you
+    2) data_location = <your_path>  to where you keep your LIGO data
+    3) You need to run twice:
+        - the first time you run, set which="H" (Hanford) and run
+        - then do it with which="L"
+ 
+
+
