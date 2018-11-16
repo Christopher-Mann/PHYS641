@@ -1,14 +1,15 @@
 My assignment is in the form of 2 jupyter notebook files.  I don't know if you use juypter notebooks, 
-so I also included HTML printouts of each.  The HTML printout will show you the outputs of each cell
-without you having to run things.
+so I also included HTML and PDF versions of each.  The HTML and PDF files will show you the outputs of 
+each cell without you having to run things.
 
 File "cosmoparams" works through my building of an MCMC code to handle fitting WMAP power spectrum data
 using 6 cosmological parameters.  It is well commented and you should be able to read through it linearly.
 
 File "cosmoparams_ptsrc" is very similar, but works through the problem with 7 parameters, altering
-certain functions to allow for the fitting of a_src, a point source parameter.
+certain functions to allow for the fitting of a_src, a point source parameter.  Searching for "!!!" will
+show you where I've made changes or highlight new results.
 
-Some figures are shown right in the HTML output, while others (particularly those where I did several
+Some figures are shown right in the cell output, while others (particularly those where I did several
 iterations) are shown in the figures/ folder.
 
 If you want to look at my chains, I've included the most important ones (I did several variations):
@@ -16,8 +17,8 @@ If you want to look at my chains, I've included the most important ones (I did s
   "chain_ALLparam_runX.txt" are the full MCMC runs using all parameters
   
 Figures:
-  - B_paramX_1d_curvature.png  :  1D chi^2 surface exporations
-  - chain_overview_runX.png    :  plotting chain and chi^2 values for all params
+  - B_paramZ_1d_curvature.png  :  1D chi^2 surface exporations (Z=param number)
+  - chain_overview_runX.png    :  plotting chain and chi^2 values for all params (X=run number)
   - cornerplot_runX.png        :  Corner plot of chain results and uncertainties.  Can see correlations here.
   - corr_overview_runX.png     :  Correlation length of chains.
 
